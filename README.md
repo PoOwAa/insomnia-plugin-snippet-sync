@@ -1,0 +1,1 @@
+insomnia-plugin-snippet-sync
