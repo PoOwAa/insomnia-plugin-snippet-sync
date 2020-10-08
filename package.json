@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-snippet-sync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Insomnia plugin to sync workspaces with GitLab project snippet",
   "main": "dist/index.js",
   "repository": {
