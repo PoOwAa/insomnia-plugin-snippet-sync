@@ -1,0 +1,40 @@
+{
+  "name": "insomnia-plugin-snippet-sync",
+  "version": "0.0.1",
+  "description": "Insomnia plugin to sync workspaces with GitLab project snippet",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoOwAa/insomnia-plugin-snippet-sync.git"
+  },
+  "keywords": [
+    "insomnia",
+    "gitlab",
+    "sync"
+  ],
+  "insomnia": {
+    "name": "snippet-sync",
+    "displayName": "Snippet sync",
+    "description": "Insomnia plugin to sync workspaces with GitLab project snippet",
+    "publisher": {
+      "name": "Ács Raymund"
+    },
+    "applications": {
+      "core": "^2020.4.1."
+    }
+  },
+  "author": "Ács Raymund <raycsucsu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PoOwAa/insomnia-plugin-snippet-sync/issues"
+  },
+  "homepage": "https://github.com/PoOwAa/insomnia-plugin-snippet-sync#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^14.11.5",
+    "typescript": "^4.0.3"
+  }
+}
