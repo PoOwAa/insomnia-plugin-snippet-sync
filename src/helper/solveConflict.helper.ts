@@ -2,13 +2,12 @@ import { InsomniaBaseModel } from '../types/basemodel.type';
 
 export function solveConflict(rawLocal: string, rawRemote: string) {
   const remote = JSON.parse(rawRemote);
-  if (rawLocal.length === 0) {
+  const local = JSON.parse(rawLocal);
+  if (local.resources.length === 0) {
     return remote;
   }
 
-  const resources: InsomniaBaseModel[] = [];
-
-  const local = JSON.parse(rawLocal);
+  let resources: InsomniaBaseModel[] = [];
 
   remote.resources.forEach((entry: InsomniaBaseModel) => {
     const localEntry = local.resources.find(
@@ -16,20 +15,30 @@ export function solveConflict(rawLocal: string, rawRemote: string) {
     );
 
     if (!localEntry) {
-      resources.push(localEntry);
+      // console.log(`No local entry found for [${entry._id}], adding:`);
+      resources.push(entry);
     } else {
       if (entry.modified > localEntry.modified) {
+        // console.log(`Remote is newer, using that. [${entry._id}]`);
         resources.push(entry);
       } else {
+        // console.log(`Local is newer, using that. [${localEntry._id}]`);
         resources.push(localEntry);
       }
     }
   });
 
+  const oldLength = resources.length;
+  resources = resources.filter((r) => r);
+  // console.log(
+  //   `Cleaning up. Old size [${oldLength}] new size [${resources.length}]`,
+  // );
+
   local.resources.forEach((entry: InsomniaBaseModel) => {
     const remoteEntry = resources.find((item) => item._id === entry._id);
 
     if (!remoteEntry) {
+      // console.log(`Entry [${entry._id}} not found in remote, using local.`);
       resources.push(entry);
     }
   });
