@@ -32,7 +32,7 @@ async function loadWorkspaceConfig(
       cancelable: true,
     });
   } catch (e) {
-    console.log('Prompt escape');
+    // console.log('Prompt escape');
     return false;
   }
 
