@@ -27,12 +27,12 @@ async function loadConfig(
       label: 'Credentials JSON',
       defaultValue:
         oldData ||
-        `{"provider": "gitlab", "url": "https://gitlab.com/", "token": "YOUR_ACCESS_TOKEN_HERE" }`,
+        `{"provider": "gitlab", "baseUrl": "https://gitlab.com/", "token": "YOUR_ACCESS_TOKEN_HERE" }`,
       submitName: 'Save',
       cancelable: true,
     });
   } catch (e) {
-    console.log('Prompt escape');
+    // console.log('Prompt escape');
     return false;
   }
 
