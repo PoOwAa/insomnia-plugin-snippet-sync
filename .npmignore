@@ -1,0 +1,5 @@
+src/
+.prettierrc
+.editorconfig
+screenshot.png
+tsconfig.json
