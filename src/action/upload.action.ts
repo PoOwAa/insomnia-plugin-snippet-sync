@@ -3,6 +3,7 @@ import { InsomniaWorkspaceAction } from '../types/workspace-action.type';
 import {
   InsomniaWorkspaceActionModel,
   InsomniaContext,
+  InsomniaContextDataExportResult,
 } from '../types/insomnia.types';
 import {
   SnippetSyncAuthConfig,
@@ -10,6 +11,8 @@ import {
   SnippetSyncConfig,
 } from '../interface/snippetSyncConfig.interface';
 import { GitlabService } from '../service/gitlab.service';
+import { InsomniaBaseModel } from '../types/basemodel.type';
+import { correspondingIds } from '../helper/correspondingIds.helper';
 
 export const uploadAction: InsomniaWorkspaceAction = {
   label: 'Workspace upload',
@@ -46,7 +49,18 @@ export const uploadAction: InsomniaWorkspaceAction = {
       includePrivate: false,
       format: 'json',
     });
-    const localRaw = JSON.stringify(JSON.parse(local), null, 2);
+
+    const exportedData: InsomniaContextDataExportResult = JSON.parse(local);
+    const idFilter: string[] = correspondingIds(
+      exportedData.resources,
+      models.workspace._id,
+    );
+    exportedData.resources = exportedData.resources.filter(
+      (resource: InsomniaBaseModel) =>
+        idFilter.includes(resource._id) || idFilter.includes(resource.parentId),
+    );
+
+    const localRaw = JSON.stringify(exportedData, null, 2);
 
     try {
       if (
