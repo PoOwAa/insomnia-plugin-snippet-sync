@@ -1,6 +1,7 @@
 import { InsomniaWorkspace } from './workspace.type';
 import { InsomniaRequestGroup } from './request-group.type';
 import { InsomniaRequestParameter } from './request.type';
+import { InsomniaBaseModel } from './basemodel.type';
 
 interface InsomniaTemplateTagArgumentOption {
   displayName: string;
@@ -199,12 +200,12 @@ export interface InsomniaAppContext {
   showSaveDialog(options?: { defaultPath?: string }): Promise<string | null>;
 }
 
-interface InsomniaDataImportContext {
+interface InsomniaContextDataImport {
   uri(uri: string, options?: { workspaceId?: string }): Promise<void>;
   raw(text: string, options?: { workspaceId?: string }): Promise<void>;
 }
 
-interface InsomniaDataExportContext {
+interface InsomniaContextDataExport {
   insomnia(options: {
     includePrivate?: boolean;
     format?: 'json' | 'yaml';
@@ -216,13 +217,21 @@ interface InsomniaContextNetworkFunctions {
   sendRequest(request: Request): Promise<Response>;
 }
 
-interface InsomniaDataContext {
-  import: InsomniaDataImportContext;
-  export: InsomniaDataExportContext;
+interface InsomniaContextData {
+  import: InsomniaContextDataImport;
+  export: InsomniaContextDataExport;
 }
 
 export interface InsomniaContext {
   store: InsomniaContextStoreFunctions;
   app: InsomniaAppContext;
-  data: InsomniaDataContext;
+  data: InsomniaContextData;
+}
+
+export interface InsomniaContextDataExportResult {
+  resources: InsomniaBaseModel[];
+  __export_date: Date;
+  __export_format: number;
+  __export_source: string;
+  _type: string;
 }
