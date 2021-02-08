@@ -3,6 +3,9 @@
   "version": "0.1.6",
   "description": "Insomnia plugin to sync workspaces with GitLab project snippet",
   "main": "dist/index.js",
+  "scripts": {
+    "test": "echo 'No test specified' && exit 0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PoOwAa/insomnia-plugin-snippet-sync.git"
