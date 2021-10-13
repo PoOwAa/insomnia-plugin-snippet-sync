@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/PoOwAa/insomnia-plugin-snippet-sync#readme",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.23.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
